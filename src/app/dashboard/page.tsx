@@ -226,8 +226,9 @@ const Page = () => {
                 fill="black"
               />
             </svg>
+            
             <img
-              src="https://assets-global.website-files.com/62bdc93e9cccfb43e155104c/654f7e7c694b77bb4600eed3_Luffy%2520PFP%2520for%2520Tiktok%25205.png"
+              src="https://d14lg9nzq1d3lc.cloudfront.net/scholarfrontend/assets/icons/LSRevamp/person_ellipse.svg"
               className={styles.luffy}
             ></img>
           </div>

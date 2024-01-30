@@ -94,9 +94,9 @@
   background-color: #fafafb;
 }
 .luffy {
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
+  /* border-radius: 100%; */
+  /* width: 40px; */
+  height: 35px;
 }
 
 .uploadname {
@@ -116,6 +116,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
+  cursor: pointer;
 }
 .mainbox {
   background-color: #ffff;
@@ -168,6 +169,7 @@
   justify-content: center;
   padding: 0.7rem;
   color: #ffff;
+  cursor: pointer;
 }
 
 .f {
@@ -363,6 +365,7 @@
 .opencsv{
   display: none;
   font-weight: 600;
+
 }
 
 @media only screen and (max-width: 1400px) {
@@ -375,7 +378,7 @@
   
   .leftdiv {
     position: absolute;
-    left: 0;
+    left: -100000px;
     top: 0;
     display: flex;
     align-items: flex-start;
@@ -442,7 +445,7 @@
 }
 
 .memnutogl {
-  left: 1000000px;
+  left: 0px;
 }
 
 .hear {
