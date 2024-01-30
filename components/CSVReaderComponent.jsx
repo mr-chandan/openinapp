@@ -8,6 +8,7 @@ const CSVReaderComponent = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [parsedData, setParsedData] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState({});
+  const [loading, setloading] = useState(false);
 
   const toggleDropdown = (id) => {
     setDropdownVisible((prevState) => ({
@@ -33,7 +34,21 @@ const CSVReaderComponent = () => {
   };
 
   function Dataprocess() {
+    if (!selectedFile) {
+      alert("Please select a file.");
+      return;
+    }
+  
+    // Check if the selected file has a CSV extension
+    const fileNameParts = selectedFile.name.split('.');
+    const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+  
+    if (fileExtension !== 'csv') {
+      alert("Please select a CSV file.");
+      return;
+    }
 
+    setloading(true)
     Papa.parse(selectedFile, {
       header: true,
       skipEmptyLines: true,
@@ -60,6 +75,8 @@ const CSVReaderComponent = () => {
       },
 
     });
+
+    setloading(false)
   }
 
 
@@ -112,6 +129,7 @@ const CSVReaderComponent = () => {
   function removefile() {
     setSelectedFile(null);
     setFileName(null);
+    setParsedData([])
   }
 
   return (
@@ -253,27 +271,37 @@ const CSVReaderComponent = () => {
             </div>
           </div>
           <div className={styles.btnn} onClick={Dataprocess}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Upload
+
+
+            {loading ? (
+
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="Loading" className={styles.load}><path fill="#ffffff" d="M50.287 32A18.287 18.287 0 1 1 32 13.713a1.5 1.5 0 1 1 0 3A15.287 15.287 0 1 0 47.287 32a1.5 1.5 0 0 1 3 0Z" data-name="Loading" class="color88e2de svgShape"></path></svg>
+            ) : (
+              <>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div>Upload</div></>
+            )}
+
+
           </div>
         </div>
       </div>
-      
-      <div className={styles.tablecont}>
+
+      {parsedData.length > 0 ? (<div className={styles.tablecont}>
         <div className={styles.scro}>
           <div className={styles.uploadsss}>Uploads</div>
           <div className={styles.tablebox}>
@@ -360,7 +388,8 @@ const CSVReaderComponent = () => {
         </div>
 
 
-      </div>
+      </div>) : null}
+
     </div>
   );
 };

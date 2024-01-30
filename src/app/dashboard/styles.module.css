@@ -7,7 +7,7 @@
 
 .leftdiv {
   height: 100vh;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
 }
 
 .rightdiv {
@@ -30,34 +30,57 @@
   justify-content: center;
   gap: 1rem;
 }
+
 .mendiv {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-direction: column; */
 }
 
 .st {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  padding-left: auto;
+  padding-right: auto;
 }
 
 .menuitems {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
+  width: 100%;
+  padding-left: 3rem;
+  cursor: pointer;
+}
+
+.menuitems:hover {
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
 }
 
 .menuitems svg {
   height: 4rem;
 }
+
 .lo {
-  fill: red;
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 90.25%);
 }
 
+.load{
+  height: 30px;
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .navbar {
   display: flex;
   align-items: center;
@@ -171,12 +194,10 @@
   /* overflow: hidden; */
 }
 
-
-.uploadsss{
-margin-bottom: 1rem;
-margin-left: 1rem;
-font-weight: 600;
-
+.uploadsss {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-weight: 600;
 }
 
 .table {
@@ -243,6 +264,10 @@ font-weight: 600;
   justify-content: center;
   border-radius: 10px;
   padding: 0.5rem;
+}
+
+.menuitems svg:hover path {
+  fill: #605bff;
 }
 
 .drop {
@@ -348,12 +373,15 @@ font-weight: 600;
     padding: 0 1rem;
   }
 
-
   .hiddenitems {
     display: flex;
   }
   .uploadname {
     display: none;
+  }
+
+  .logo {
+    padding-left: 3rem;
   }
 
   .navbar {
@@ -379,24 +407,21 @@ font-weight: 600;
     text-align: left;
   }
 
-  .search{
+  .search {
     gap: 1rem;
   }
   .navbar {
     padding: 0rem 2rem 3rem 1rem;
   }
-
 }
 
 .memnutogl {
   left: 1000000px;
 }
 
-.hear{
+.hear {
   display: none;
 }
-
-
 
 @media only screen and (max-width: 600px) {
   .dootedlines {
@@ -410,12 +435,12 @@ font-weight: 600;
     min-width: 15rem;
     border-radius: 10px;
   }
-  .hear{
+  .hear {
     display: flex;
     flex-direction: row;
   }
 
-  .opp{
+  .opp {
     display: none;
   }
 }
