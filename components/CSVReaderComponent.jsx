@@ -98,32 +98,18 @@ const CSVReaderComponent = () => {
     }));
   };
 
-  const handleTagToggle = (id, tag) => {
-    setSelectedTags((prevSelectedTags) => {
-      const currentTags = prevSelectedTags[id] || [];
-      if (currentTags.includes(tag)) {
-        return {
-          ...prevSelectedTags,
-          [id]: currentTags.filter((t) => t !== tag),
-        };
-      } else {
-        return {
-          ...prevSelectedTags,
-          [id]: [...currentTags, tag],
-        };
-      }
-    });
-  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     setSelectedFile(file);
     setFileName(file.name);
     console.log(e.target.files[0])
 
   };
 
-  const handleDropAreaClick = () => {
+  const handleDropAreaClick = (event) => {
+    event.target.value = null
     if (!selectedFile) {
       fileInputRef.current.click();
     }
@@ -132,9 +118,7 @@ const CSVReaderComponent = () => {
   };
   const fileInputRef = React.createRef();
 
-  const changeHandler = (event) => {
-    console.log(event.target.files[0])
-  };
+
 
   function removefile() {
     setSelectedFile(null);
@@ -145,9 +129,9 @@ const CSVReaderComponent = () => {
   return (
     <div>
       <div className={styles.upload}>
-  
+
         <div>
-        <div className={`${styles.opencsv}`}>Upload CSV</div>
+          <div className={`${styles.opencsv}`}>Upload CSV</div>
           <div className={styles.mainbox}>
 
             <div className={styles.dootedlines} onClick={handleDropAreaClick}>
@@ -284,7 +268,7 @@ const CSVReaderComponent = () => {
     </div> */}
               </div>
             </div>
-            <div className={styles.btnn} onClick={Dataprocess}>
+            <div className={`${styles.btnn} ${parsedData.length > 0 ? styles.clr : ''}`} onClick={Dataprocess}>
 
 
               {loading ? (
