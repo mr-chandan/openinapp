@@ -1,10 +1,13 @@
 .main {
   display: grid;
   grid-template-columns: 1fr 7fr;
+  overflow: hidden;
+  position: relative;
 }
 
 .leftdiv {
   height: 100vh;
+  padding: 0 2rem;
 }
 
 .rightdiv {
@@ -34,7 +37,7 @@
   flex-direction: column;
 }
 
-.st{
+.st {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -61,11 +64,12 @@
   justify-content: space-between;
   padding: 2rem 3rem 0 3rem;
   margin-bottom: 3rem;
+  background-color: #fafafb;
 }
 .luffy {
   border-radius: 100%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .uploadname {
@@ -88,12 +92,13 @@
 }
 .mainbox {
   background-color: #ffff;
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
+  border-radius: 20px;
 }
 
 .dootedlines {
@@ -103,8 +108,8 @@
   /* padding: 5rem; */
   align-items: center;
   justify-content: center;
-  height: 15rem;
-  width: 30rem;
+  min-height: 15rem;
+  min-width: 30rem;
   border-radius: 10px;
 }
 .divp {
@@ -155,21 +160,37 @@
 }
 
 .tablecont {
-  /* background-color: #F5F5F5; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  max-width: 100vw;
+  margin-top: 2rem;
+  /* overflow-x: scroll; */
+  /* max-width: 100vw; */
+  /* overflow: hidden; */
+}
+
+
+.uploadsss{
+margin-bottom: 1rem;
+margin-left: 1rem;
+font-weight: 600;
+
 }
 
 .table {
   border-collapse: separate;
   border-spacing: 0 1em;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .table th {
   padding-right: 10rem;
   text-align: left;
+  font-weight: 100;
 }
 
 .bodytable td:first-child {
@@ -200,11 +221,12 @@
   margin-bottom: 1rem;
 }
 
-.tablebox {
+/* .tablebox {
   background-color: #f5f5f5;
   padding: 1rem;
   border-radius: 10px;
-}
+  width: 100%;
+} */
 
 .lasttd {
   display: flex;
@@ -258,10 +280,9 @@
   justify-content: space-between;
   padding: 0 1rem 0 1rem;
   padding: 10px;
-  border: 1px solid #F5F5F5;
+  border: 1px solid #f5f5f5;
   border-radius: 10px;
   cursor: pointer;
-
 }
 
 .dropdownOptions {
@@ -288,4 +309,110 @@
 .dropdownOptions li:hover {
   background-color: #f5f5f5;
   border-radius: 10px;
+}
+
+.hiddenitems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  display: none;
+}
+
+.cross {
+  display: none;
+}
+
+@media only screen and (max-width: 1400px) {
+  .leftdiv {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .main {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .scro {
+    max-width: 100vw;
+    overflow-x: scroll;
+    padding: 0 1rem;
+  }
+
+
+  .hiddenitems {
+    display: flex;
+  }
+  .uploadname {
+    display: none;
+  }
+
+  .navbar {
+    padding: 1rem;
+    margin-bottom: 0rem;
+  }
+
+  .cross {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 45;
+    margin: 10px;
+    margin-right: 20px;
+  }
+
+  .base {
+    font-family: "Montserrat";
+    font-size: 23px;
+    font-weight: 550;
+    line-height: 88px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .search{
+    gap: 1rem;
+  }
+
+}
+
+.memnutogl {
+  left: 1000000px;
+}
+
+.hear{
+  display: none;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .dootedlines {
+    display: flex;
+    border: 1px dotted #d9d9d9;
+    border-style: dashed;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 10rem;
+    min-width: 15rem;
+    border-radius: 10px;
+  }
+  .hear{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .opp{
+    display: none;
+  }
 }

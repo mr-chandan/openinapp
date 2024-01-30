@@ -194,7 +194,7 @@ const CSVReaderComponent = () => {
               </svg>
 
 
-              {!selectedFile && <div className={styles.register}>
+              {!selectedFile && <div className={`${styles.register} ${styles.opp}`}>
                 <div className={styles.dropArea} >
                   Drop your excel sheet here or
                 </div>
@@ -210,6 +210,27 @@ const CSVReaderComponent = () => {
                 /><div className={styles.clrreg}>browse</div>
               </div>}
 
+
+              {<div className={`${styles.register} ${styles.hear}`} >
+                <div className={styles.dropArea} >
+                  Upload Your Excel sheet
+                </div>
+
+
+                <input
+                  ref={fileInputRef}
+                  className="file-input"
+                  type="file"
+                  name="file"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+                <div className={styles.clrreg}>here</div>
+              </div>}
+
+
+
+
               {selectedFile &&
                 <div className={styles.showfile}>
                   <div className={styles.dropArea} >
@@ -219,9 +240,6 @@ const CSVReaderComponent = () => {
 
                   <div className={styles.wrong} onClick={removefile}>remove</div>
                 </div>
-
-
-
               }
 
 
@@ -253,29 +271,31 @@ const CSVReaderComponent = () => {
             Upload
           </div>
         </div>
-
       </div>
+      
       <div className={styles.tablecont}>
-        <div className={styles.tablebox}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Links</th>
-                <th>Prefix</th>
-                <th>Select Tags</th>
-                <th>Selected Tags</th>
-              </tr>
-            </thead>
-            <tbody className={styles.bodytable}>
-              {parsedData.map((row) => (
-                <tr key={row.id}>
-                  <td>{row.id}</td>
-                  <td>{row.links}</td>
-                  <td>{row.prefix}</td>
-                  <td>
-                    {/* Multi-select dropdown for select tags */}
-                    {/* <select
+        <div className={styles.scro}>
+          <div className={styles.uploadsss}>Uploads</div>
+          <div className={styles.tablebox}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Sl No.</th>
+                  <th>Links</th>
+                  <th>Prefix</th>
+                  <th>Add Tags</th>
+                  <th>Selected Tags</th>
+                </tr>
+              </thead>
+              <tbody className={styles.bodytable}>
+                {parsedData.map((row) => (
+                  <tr key={row.id}>
+                    <td>{row.id}</td>
+                    <td><a href={`https://${row.links}`}>{row.links}</a></td>
+                    <td>{row.prefix}</td>
+                    <td>
+                      {/* Multi-select dropdown for select tags */}
+                      {/* <select
                   multiple
                   value={selectedTags[row.id] || []}
                   onChange={(e) => handleTagSelect(row.id, Array.from(e.target.selectedOptions, option => option.value))}
@@ -286,27 +306,27 @@ const CSVReaderComponent = () => {
                     </option>
                   ))}
                 </select> */}
-                    <div className={styles.customDropdown}>
-                      <div className={styles.selectedOptions} onClick={() => toggleDropdown(row.id)}>
-                        <div>Select Tags</div><div><svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M10 0.75L5.5 5.25L1 0.75" stroke="#999CA0" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                      <div className={styles.customDropdown}>
+                        <div className={styles.selectedOptions} onClick={() => toggleDropdown(row.id)}>
+                          <div>Select Tags</div><div><svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 0.75L5.5 5.25L1 0.75" stroke="#999CA0" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                          </div>
                         </div>
+                        {dropdownVisible[row.id] && (
+                          <ul className={styles.dropdownOptions}>
+                            {row['select tags'].split(',').map((tag) => (
+                              <li key={tag.trim()} onClick={() => {
+                                handleTagSelect(row.id, tag.trim())
+                                toggleDropdown(row.id)
+                              }} >
+                                {tag.trim()}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
-                      {dropdownVisible[row.id] && (
-                        <ul className={styles.dropdownOptions}>
-                          {row['select tags'].split(',').map((tag) => (
-                            <li key={tag.trim()} onClick={() => {
-                              handleTagSelect(row.id, tag.trim())
-                              toggleDropdown(row.id)
-                            }} >
-                              {tag.trim()}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    {/* <select className={styles.drop}
+                      {/* <select className={styles.drop}
                       value={selectedTags[row.id] || ''}
                       onChange={(e) => handleTagSelect(row.id, Array.from(e.target.selectedOptions, option => option.value))}
                     >
@@ -316,26 +336,30 @@ const CSVReaderComponent = () => {
                         </option>
                       ))}
                     </select> */}
-                  </td>
-                  <td >
-                    <div className={styles.lasttd}>
-                      {selectedTags[row.id] && selectedTags[row.id].map((tag) => (
-                        <div key={tag} className={styles.selectedTag}>
-                          {tag}
-                          <div onClick={() => handleTagRemove(row.id, tag)}><svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1L4 4M4 4L1 7M4 4L7 7M4 4L7 1" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
+                    </td>
+                    <td >
+                      <div className={styles.lasttd}>
+                        {selectedTags[row.id] && selectedTags[row.id].map((tag) => (
+                          <div key={tag} className={styles.selectedTag}>
+                            {tag}
+                            <div onClick={() => handleTagRemove(row.id, tag)}><svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1 1L4 4M4 4L1 7M4 4L7 7M4 4L7 1" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
 
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
         </div>
+
+
       </div>
     </div>
   );

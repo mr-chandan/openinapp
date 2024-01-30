@@ -1,15 +1,23 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import CSVReaderComponent from "../../../components/CSVReaderComponent";
 
-const page = () => {
+const Page = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleClass = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <div className={styles.main}>
-      <div className={styles.leftdiv}>
+      <div className={`${styles.leftdiv} ${isActive ? styles.memnutogl : ""}`}>
         <div className={styles.logo}>
           <svg
-            width="42"
-            height="42"
+            width="30"
+            height="30"
             viewBox="0 0 42 42"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +30,24 @@ const page = () => {
             />
           </svg>
           <div className={styles.base}>Base</div>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={styles.cross}
+            onClick={toggleClass}
+          >
+            <path
+              className={styles.cross}
+              d="M12.3424 1.65682L6.68552 7.31375M6.68552 7.31375L1.0287 1.65685M6.68552 7.31375L1.02872 12.9706M6.68552 7.31375L12.3424 12.9706"
+              stroke="#999CA0"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </div>
         <div className={styles.mendiv}>
           <div className={styles.st}>
@@ -161,6 +187,40 @@ const page = () => {
       </div>
       <div className={styles.rightdiv}>
         <div className={styles.navbar}>
+          <div className={styles.hiddenitems}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 18 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={toggleClass}
+            >
+              <path
+                d="M1 1H17M1 13H17M1 7H17"
+                stroke="#231F20"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M25.9902 12.6291L19.7848 9.44685C19.4943 8.735 18.7951 8.23336 17.9787 8.23336C17.1081 8.23336 16.3707 8.80392 16.1202 9.59152L9.99098 14.6481C9.67551 14.4286 9.29214 14.3 8.87872 14.3C8.36808 14.3 7.90328 14.4963 7.55566 14.8175L0.121365 11.1829C1.00521 4.86344 6.43234 0 12.9954 0C20.051 0 25.7938 5.62091 25.9902 12.6291ZM6.99929 16.7717L0 13.3498C0.185401 20.3678 5.93266 26 12.9954 26C19.6871 26 25.1979 20.944 25.9161 14.4437L25.7557 14.7565L19.4134 11.504C19.0571 11.891 18.5462 12.1334 17.9787 12.1334C17.5037 12.1334 17.0683 11.9635 16.73 11.6812L10.8023 16.5715C10.649 17.4955 9.84616 18.2 8.87872 18.2C7.98246 18.2 7.22743 17.5953 6.99929 16.7717Z"
+                fill="#605BFF"
+              />
+            </svg>
+
+            <div className={styles.base}>Base</div>
+          </div>
+
           <div className={styles.uploadname}>Upload CSV</div>
 
           <div className={styles.search}>
@@ -188,4 +248,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
