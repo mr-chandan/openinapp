@@ -382,6 +382,9 @@ font-weight: 600;
   .search{
     gap: 1rem;
   }
+  .navbar {
+    padding: 0rem 2rem 3rem 1rem;
+  }
 
 }
 
