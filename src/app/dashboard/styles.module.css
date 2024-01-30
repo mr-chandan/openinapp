@@ -3,16 +3,19 @@
   grid-template-columns: 1fr 7fr;
   overflow: hidden;
   position: relative;
+
 }
 
 .leftdiv {
   height: 100vh;
+  background-color:    #ffff;
   /* padding: 0 2rem; */
 }
 
 .rightdiv {
   background-color: #fafafb;
   /* height: 100vh; */
+  min-height: 100vh;
 }
 
 .base {
@@ -53,8 +56,9 @@
   justify-content: flex-start;
   gap: 1rem;
   width: 100%;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   cursor: pointer;
+  scroll-behavior: smooth;
 }
 
 .menuitems:hover {
@@ -187,7 +191,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 100vw;
+  /* max-width: 80vw; */
   margin-top: 2rem;
   /* overflow-x: scroll; */
   /* max-width: 100vw; */
@@ -346,9 +350,29 @@
 
 .cross {
   display: none;
+  font-weight: 600;
+}
+
+/* tablebox */
+.scro {
+  max-width:70vw;
+  overflow-x: scroll;
+  padding: 0 1rem;
+  scroll-behavior: smooth;
+}
+.opencsv{
+  display: none;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 1400px) {
+  .opencsv{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
   .leftdiv {
     position: absolute;
     left: 0;
@@ -361,6 +385,8 @@
     width: 100%;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
+    height: 100%;
+    z-index: 1000;
   }
   .main {
     display: grid;
